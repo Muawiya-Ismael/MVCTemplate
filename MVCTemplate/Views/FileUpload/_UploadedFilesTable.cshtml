@@ -1,0 +1,26 @@
+﻿@model IEnumerable<MVCTemplate.Models.UploadedFile>
+
+<table class="table table-striped table-bordered" id="uploadedFilesTable">
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var uploadedFile in Model)
+            {
+                <tr>
+                    <td class="col-md-5">
+                        <a asp-controller="FileUpload" asp-action="DownloadFile" asp-route-UniqueFileName="@uploadedFile.UniqueFileName">
+                            @uploadedFile.OriginalFileName
+                        </a>
+                    </td>
+                    <td class="col-md-7">@uploadedFile.Description</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3" class="text-center">No uploaded files found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
